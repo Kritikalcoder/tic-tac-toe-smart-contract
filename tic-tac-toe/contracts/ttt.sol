@@ -33,6 +33,7 @@ contract Tictactoe {
     
     function play_move(uint x, uint y) public payable returns(bool) {
         require(player_count == 2, "Game hasn't started");
+        require(msg.sender == player0 || msg.sender == player1, "You are not a participant.");
         require(player_address[whose_turn] == msg.sender, "It's not your turn");
         require(x < 3 && x >=0, "Wrong location");
         require(y < 3 && y >=0, "Wrong location");
