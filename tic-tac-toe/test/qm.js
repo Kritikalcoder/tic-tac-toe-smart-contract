@@ -1,13 +1,13 @@
 var expectThrow = require('./helper.js');
-const TTT = artifacts.require("ttt");
+const ttt = artifacts.require("ttt");
 
 contract("ttt", async(accounts) => {
-    var ttt;
+    var TTT;
 
     it("tests that user can register only once", async () => {
-        ttt = await TTT.new({from: accounts[0]});
-        let res1 = await quiz.register_quiz_master({from: accounts[0]});
-        let res2 = quiz.register_quiz_master({from: accounts[1]});
+        TTT = await ttt.new({from: accounts[0]});
+        let res1 = await TTT.register_player({from: accounts[0]});
+        let res2 = TTT.register_player({from: accounts[0]});
         await expectThrow(res2);
     })
 
