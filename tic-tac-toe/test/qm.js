@@ -11,6 +11,18 @@ contract("ttt", async(accounts) => {
         await expectThrow(res2);
     })
 
+    it("tests that player 2 can't make first move", async () => {
+        let res1 = await TTT.register_player({from: accounts[1]});
+        let res2 = TTT.play_move(0, 0, {from: accounts[1]});
+        await expectThrow(res2);
+    })
+
+    it("tests that player can't make two moves consecutively", async () => {
+        let res2 = await TTT.play_move(0, 0, {from: accounts[0]});
+        let res3 = TTT.play_move(0, 1, {from: accounts[0]});
+        await expectThrow(res3);
+    })
+
     // it("tests that only quiz master can add questions", async () => {
     //     let res1 = quiz.add_question("Which is the greatest? - 1. 1 2. 2 3. 3 4. 4", 4, {from: accounts[1]});
     //     await expectThrow(res1);
