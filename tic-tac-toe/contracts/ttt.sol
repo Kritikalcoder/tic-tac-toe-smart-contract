@@ -40,13 +40,13 @@ contract Tictactoe {
         require(winner == 0, "Game over");
         
         board[x][y] = whose_turn + 1;
-        winner = check_board();
+        winner = check_board_for_winner();
         whose_turn = (whose_turn + 1) % 2;
         
         return true;
     }
     
-    function check_board() public view returns(uint) {
+    function check_board_for_winner() public view returns(uint) {
         uint i;
         if (board[0][0] == board[1][1] && board[1][1] == board[2][2])
             return board[0][0];
@@ -71,5 +71,18 @@ contract Tictactoe {
     
     function get_board() public view returns(uint[3][3]) {
         return board;
+    }
+    
+    function get_id() public view returns(uint) {
+        require(player0 == msg.sender || player1 == msg.sender, "Not a participant");
+        
+        if (player0 == msg.sender)
+            return 0;
+        
+        return 1;
+    }
+    
+    function get_turn() public view returns(uint) {
+        return whose_turn;
     }
 }
