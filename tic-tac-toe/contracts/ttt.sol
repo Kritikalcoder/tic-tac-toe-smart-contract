@@ -1,6 +1,6 @@
 pragma solidity ^0.4.8;
 
-contract Tictactoe {
+contract ttt {
     address player0;
     address player1;
     
